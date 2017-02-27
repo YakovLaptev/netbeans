@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <f:view>
+        <h:body>            
+            <ui:include src="/header.xhtml" />
+            <div class="main">
+                <div class="page_name">
+                    <nav>
+                        <div class="a"><a href="customerOrders.xhtml">Заказы</a></div><div class="a1">|</div>
+                        <div class="a"><a href="customerIndex.xhtml" class="onpage">Главная</a></div><div class="a1">|</div>
+                        <div class="a"><a href="customerNotifications.xhtml">Уведомления</a></div> 
+                    </nav>
+                </div>
+
+                <div class="table"><h2>Акции</h2>
+                    <h:form>
+                        <h:dataTable value="#{CampReqBean.campaigns}" var="camp" style="width: 50%" cellpadding="7px" cellspacing="0px" styleClass="advtable" headerClass="advtableheader" rowClasses="advtableoddrow,advtableevenrow">
+                            <h:column>
+                                <f:facet name="header">Название</f:facet>
+                                    #{camp.name}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Описание</f:facet>
+                                    #{camp.about}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Дата начала</f:facet>
+                                    #{camp.startDate}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Дата окончания</f:facet>
+                                    #{camp.endDate}
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </div>
+                <div class="table"><h2>Реклама</h2>
+                    <h:form>
+                        <h:dataTable value="#{AdvReqBean.advertisings}" var="adv" cellpadding="7px" cellspacing="0px" styleClass="advtable" headerClass="advtableheader" rowClasses="advtableoddrow,advtableevenrow">
+                            <h:column>
+                                <f:facet name="header">Название</f:facet>
+                                    #{adv.name}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Категория</f:facet>
+                                    #{adv.category}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Описание</f:facet>
+                                    #{adv.briefDescription}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Название акции</f:facet>
+                                    #{adv.campaignName}
+                            </h:column>
+                            <h:column>
+                                <h:commandButton action="#{AdvReqBean.setSelectedAdv(adv.name)}" class="button" style="float: none; width: 75%" value="Подробнее / Заказать"/>
+                            </h:column>
+                        </h:dataTable>   
+                    </h:form>
+                </div>
+                <div style="text-align: center">                                    
+                    <h2><a onclick="history.back()" style="text-decoration: none; color: #4F54AE">Назад</a></h2>
+                </div>
+            </div>
+        </h:body>
+    </f:view>
+</html>

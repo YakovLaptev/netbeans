@@ -1,0 +1,37 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <head>
+        <title>Рекламное агентство</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <header>
+        <h:form>
+            <div class="headers"><strong>Рекламное агентство</strong></div>
+            <div class="headers head1"></div>
+            <div class="headers">  
+                <div class="buttons"></div>
+                <div class="buttons"></div>
+                <c:if test="#{request.remoteUser != null}">     
+                    <div class="buttons"></div> 
+                    <div class="buttons"><h:commandLink action="#{loginBean.logout()}" style="text-decoration: none; color: red" value="Выход"/></div> 
+                    <div class="buttons" style="width: 25%">
+                        <a href="account.xhtml" style="text-decoration: none;"> 
+                         Здравствуйте, <h:outputLabel value='#{request.userPrincipal.name}' style="color: #ff6600; font-size: 115%"/>
+                        </a>
+                    </div>
+                </c:if> 
+                <c:if test="#{request.remoteUser == null}">
+                    <div class="buttons"></div> 
+                    <div class="buttons"><a href="account.xhtml">Вход</a></div>
+                    <div class="buttons"><a href="registration.xhtml">Регистрация</a></div>  
+                </c:if> 
+            </div>
+        </h:form>
+    </header>
+</ui:composition>

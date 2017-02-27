@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <f:view>
+        <h:body>            
+            <ui:include src="/header.xhtml" />
+            <div class="main">
+                <div class="page_name">
+                    <nav>
+                        <div class="a"><a href="registration.xhtml" class="onpage">Регистрация</a></div><div class="a1"></div>
+                    </nav>
+                </div>
+
+                <h:form>
+                    <div class="add">
+                        <div class="cbm_comm"> 
+                            <h2>Логин</h2>
+                            <p:inputText id="login" value="#{NewUserReqBean.newCustomer.user.login}"/>
+                            <h2>Пароль</h2>
+                            <p:inputText id="password" value="#{NewUserReqBean.newCustomer.user.password}" type="password"/>
+                            <h2>ФИО</h2>
+                            <p:inputText id="fio" value="#{NewUserReqBean.newCustomer.fio}"/>
+                            <h2>Почта</h2>
+                            <p:inputText id="email" value="#{NewUserReqBean.newCustomer.email}" type="email"/>
+                            <p:message for="email"/>                        
+                        </div>
+                    </div>
+                    <div style="text-align: center"> 
+                        <h:commandButton value="Зарегистрироваться" action="#{NewUserReqBean.addNew()}" class="addbutton"/>
+                        <c:if test="#{loginBean.userIn=='true'}">
+                            <h2><a href="customerIndex.xhtml" style="text-decoration: none; color: #4F54AE">На главную</a></h2>
+                        </c:if> 
+                        <c:if test="#{loginBean.userIn=='false'}">
+                            <h2><a href="index.xhtml" style="text-decoration: none; color: #4F54AE">На главную</a></h2>
+                        </c:if>                         
+                    </div>
+                </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</html>

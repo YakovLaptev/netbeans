@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <f:view>
+        <h:body>            
+            <ui:include src="/header.xhtml" />
+            <div class="main">
+                <div class="page_name">
+                    <nav>                        
+                        <div class="a"><a href="managerCustomers.xhtml" class="onpage">Клиенты</a></div><div class="a1">|</div>
+                        <div class="a"><a href="managerIndex.xhtml">Акции/реклама</a></div><div class="a1">|</div>
+                        <div class="a"><a href="managerOrders.xhtml">Заказы</a></div> 
+                    </nav>
+                </div>
+                <div class="table"><h2>Клиенты</h2> 
+                    <h:form id="form">
+                        <h:dataTable value="#{CustomersReqBean.customers}" var="cus" cellpadding="5px" cellspacing="0px" styleClass="advtable" headerClass="advtableheader" rowClasses="advtableoddrow,advtableevenrow">
+                            <h:column>
+                                <f:facet name="header">ФИО</f:facet>
+                                    #{cus.fio}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Дата регистрации</f:facet>
+                                    #{cus.registrationDate}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Электронный адрес</f:facet>
+                                    #{cus.email}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Имя пользователя</f:facet>
+                                    #{cus.user.login}
+                            </h:column>
+                        </h:dataTable>   
+                    </h:form>
+                </div>
+                <div style="text-align: center"> 
+                    <h2><a onclick="history.back()" style="text-decoration: none; color: #4F54AE">Назад</a></h2>
+                </div>
+            </div>
+        </h:body>
+    </f:view>
+</html>

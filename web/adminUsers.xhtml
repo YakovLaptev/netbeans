@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <f:view>
+        <h:body>            
+            <ui:include src="/header.xhtml" />
+            <div class="main">
+                <div class="page_name">
+                    <nav>
+                        <div class="a"><a href=""></a></div><div class="a1">|</div>
+                        <div class="a"><a href="adminUsers.xhtml" class="onpage">Пользователи</a></div><div class="a1">|</div>
+                        <div class="a"><a href=""></a></div> 
+                    </nav>
+                </div>
+                <div class="table"><h2>Пользователи</h2> 
+                    <h:form id="form">
+                        <p:dataTable value="#{UsersReqBean.users}" var="user" rowStyleClass="advtableoddrow" style="border: 2px solid #32356E; border-bottom-width: 3px;" styleClass="advtable" id="userTable" rowKey="#{user.login}"  editable="true" editMode="cell">
+                            <p:ajax event="cellEdit" listener="#{UsersReqBean.onCellEdit}"/>
+                            <p:column style="background: white; color: black; border: 1px solid black" headerText="Логин">
+                                #{user.login}
+                            </p:column>
+                            <p:column style="background: white; color: black; border: 1px solid black" headerText="Роль">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{user.role}" /></f:facet>
+                                    <f:facet name="input">
+                                        <h:selectOneMenu value="#{user.role}" style="width:20%;">
+                                            <f:selectItems value="#{UsersReqBean.roles}" var="role" itemLabel="#{role}" itemValue="#{role}"/>
+                                        </h:selectOneMenu>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column style="background: white; color: black; border: 1px solid black; width:42px;text-align: center" >
+                                <p:commandButton action="#{UsersReqBean.delete()}" icon="ui-icon-trash" title="View" style="border-radius: 10px;border-width: 0px; background: #ff6600; width: 90%; height: 90%;">
+                                    <f:setPropertyActionListener value="#{user}" target="#{UsersReqBean.selecteduser}" />
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>   
+                    </h:form>
+                </div>
+            </div>
+        </h:body>
+    </f:view>
+</html>

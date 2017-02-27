@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="error.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="loginerror.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="index.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="account.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="advertisingDetails.xhtml" x="396" y="300" zoom="true"/>
+        <Node id="managerCustomers.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="adminUsers.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="managerAddAdvertising.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="customerOrders.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="managerOrders.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="customerIndex.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="managerAddCampaign.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="registration.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="login.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="customerNotifications.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="managerIndex.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="header.xhtml" x="400" y="150" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

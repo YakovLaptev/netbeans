@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <f:view>
+        <h:body>            
+            <ui:include src="/header.xhtml" />
+            <div class="main">
+                <div class="page_name">
+                    <nav>
+                        <div class="a"></div><div class="a1">|</div>
+                        <div class="a"><a class="onpage">Подробнее</a></div><div class="a1">|</div>
+                        <div class="a"></div> 
+                    </nav>
+                </div>
+                <h2>Подробнее о #{DetailReqBean.advDetail.name}</h2>
+                <div class="det">
+                    <h3>Категория</h3>
+                    <h:outputText value="#{DetailReqBean.advDetail.category}"/>
+                    <h3>Название акции</h3>
+                    <h:outputText value="#{DetailReqBean.advDetail.campaignName}"/>
+                    <h3>Краткое описание</h3>
+                    <h:outputText value="#{DetailReqBean.advDetail.briefDescription}"/>
+                    <h3>Цена</h3>
+                    <h:outputText value="#{DetailReqBean.advDetail.price}"/>
+                    <h3>Полное описание</h3>
+                    <h:outputText value="#{DetailReqBean.advDetail.fullDescription}"/>                    
+                </div>
+                <h:form>
+                <div style="text-align: center">
+                    <c:if test="#{request.remoteUser != null}">
+                        <h:commandButton action="#{AdvReqBean.makeOrder(DetailReqBean.advDetail.name)}" class="button" style="width:10%;height: 30px;margin: 10px;" value="Оформить заказ"/>  
+                    </c:if> 
+                    <c:if test="#{request.remoteUser == null}">
+                        <h:commandButton class="button" style="width:10%;height: 30px;margin: 10px;background-color: #BFBCBC;" value="Оформить заказ"/>
+                    </c:if>                                       
+                    <h2><a href="#" onclick="history.back()" style="text-decoration: none; color: #4F54AE">Назад</a></h2>
+                </div>
+                    </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</html>

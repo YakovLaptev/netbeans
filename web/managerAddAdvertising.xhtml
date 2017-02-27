@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <f:view>
+        <h:body>            
+            <ui:include src="/header.xhtml" />
+            <div class="main">
+                <div class="page_name">
+                    <nav>
+                        <div class="a"></div><div class="a1">|</div>
+                        <div class="a"><a class="onpage">Создание рекламы</a></div><div class="a1">|</div>
+                        <div class="a"></div> 
+                    </nav>
+                </div>
+                <h:form>
+                    <div class="add">
+                        <div class="cbm_comm"> 
+                            <h2>Название</h2>
+                            <p:inputText id="name" value="#{AddAdvReqBean.newAdv.name}" validatorMessage="Название не должно превышать 20 знаков" >
+                                <f:validateLength maximum="20" />
+                                <p:ajax update="msg2" event="keyup" />
+                            </p:inputText>
+                            <h2>Категория</h2>
+                            <p:inputText id="category" value="#{AddAdvReqBean.newAdv.category}" validatorMessage="Категория не должна превышать 20 знаков" >
+                                <f:validateLength maximum="20" />
+                                <p:ajax update="msg2" event="keyup" />
+                            </p:inputText>
+                            <p:message for="category" id="msg2" style="color:red; background-color: white"/>
+                            <h2>Цена</h2>
+                            <p:inputText id="fio" value="#{AddAdvReqBean.newAdv.price}"/>
+                            <h2>Краткое описание</h2>
+                            <p:inputTextarea id="briefDescription" value="#{AddAdvReqBean.newAdv.briefDescription}" validatorMessage="Краткое описание не должно превышать 40 знаков" >
+                                <f:validateLength maximum="40" />
+                                <p:ajax update="msg3" event="keyup" />
+                            </p:inputTextarea>
+                            <p:message for="briefDescription" id="msg3" style="color:red; background-color: white"/> 
+                            <h2>Полное описание</h2>
+                            <p:inputTextarea id="fullDescription" value="#{AddAdvReqBean.newAdv.fullDescription}" validatorMessage="Полное описание не должно превышать 100 знаков" >
+                                <f:validateLength maximum="100" />
+                                <p:ajax update="msg4" event="keyup" />
+                            </p:inputTextarea>
+                            <h2>Акция</h2>
+                            <h:selectOneMenu value="#{AddAdvReqBean.newAdv.campaignName}" style="width:60%;">
+                                <f:selectItems value="#{AdvReqBean.campaignNames}" var="campaignName" itemLabel="#{campaignName}" itemValue="#{campaignName}"/>
+                            </h:selectOneMenu>
+                            <p:message for="fullDescription" id="msg4" style="color:red; background-color: white"/>                  
+                        </div>
+                    </div>
+                    <div style="text-align: center"> 
+                        <h:commandButton value="Добавить" action="#{AddAdvReqBean.makeAdvertising()}" class="addbutton"/>
+                        <h2><a href="managerIndex.xhtml" style="text-decoration: none; color: #4F54AE">На главную</a></h2>                        
+                    </div>
+                </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</html>

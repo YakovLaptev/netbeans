@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <f:view>
+        <h:body>            
+            <ui:include src="/header.xhtml" />
+            <div class="main">
+                <div class="page_name">
+                    <nav>
+                        <div class="a"></div><div class="a1">|</div>
+                        <div class="a"><a class="onpage">Создание акции</a></div><div class="a1">|</div>
+                        <div class="a"></div> 
+                    </nav>
+                </div>
+                <h:form>
+                    <div class="add">
+                        <div class="cbm_comm"> 
+                            <h2>Название</h2>
+                            <p:inputText id="name" value="#{AddAdvReqBean.newCamp.name}" validatorMessage="Название не должно превышать 20 знаков" >
+                                <f:validateLength maximum="20" />
+                                <p:ajax update="msg2" event="keyup" />
+                            </p:inputText>
+                            <p:message for="name" id="msg2" style="color:red; background-color: white"/> 
+                            <h2>Описание</h2>
+                            <p:inputTextarea id="about" value="#{AddAdvReqBean.newCamp.about}" validatorMessage="Полное описание не должно превышать 80 знаков" >
+                                <f:validateLength maximum="80" />
+                                <p:ajax update="msg4" event="keyup" />
+                            </p:inputTextarea>
+                            <p:message for="about" id="msg4" style="color:red; background-color: white"/> 
+                            <h2>Дата начала</h2>
+                            <p:calendar navigator="true" value="#{AddAdvReqBean.newCamp.startDate}" />
+                            <h2>Дата окончания</h2>
+                            <p:calendar navigator="true" value="#{AddAdvReqBean.newCamp.endDate}" />
+                                             
+                        </div>
+                    </div>
+                    <div style="text-align: center"> 
+                        <h:commandButton value="Добавить" action="#{AddAdvReqBean.makeCampaign()}" class="addbutton"/>
+                        <h2><a href="managerIndex.xhtml" style="text-decoration: none; color: #4F54AE">На главную</a></h2>                        
+                    </div>
+                </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</html>

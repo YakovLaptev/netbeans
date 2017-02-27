@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <f:view>
+        <h:body>            
+            <ui:include src="/header.xhtml" />
+            <div class="main">
+                <div class="page_name">
+                    <nav>                        
+                        <div class="a"><a href="managerCustomers.xhtml">Клиенты</a></div><div class="a1">|</div>
+                        <div class="a"><a href="managerIndex.xhtml" class="onpage">Акции/реклама</a></div><div class="a1">|</div>
+                        <div class="a"><a href="managerOrders.xhtml">Заказы</a></div> 
+                    </nav>
+                </div>                
+                <div class="table"><h2>Акции</h2> 
+                    <div class="tableButtons">
+                        <h:form>
+                            <h:commandButton action="#{facesContext.externalContext.redirect('./managerAddCampaign.xhtml')}"  class="button" style="width:12%;margin: 10px;" value="Добавить" />
+                        </h:form>
+                    </div>
+                    <h:form id="form">
+                        <p:dataTable value="#{CampReqBean.campaigns}" var="camp" rowStyleClass="advtableoddrow" style="border: 2px solid #32356E; border-bottom-width: 3px;" styleClass="advtable" rowKey="#{camp.name}"  editable="true" editMode="cell">
+                            <p:ajax event="cellEdit" listener="#{CampReqBean.onCellEdit}"/>
+                            <p:column style="background: white; color: black; border: 1px solid black" headerText="Название">
+                                #{camp.name}
+                            </p:column>
+                            <p:column style="background: white; color: black; border: 1px solid black" headerText="Описание">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{camp.about}" /></f:facet>
+                                    <f:facet name="input"> 
+                                        <p:inputTextarea id="about" value="#{camp.about}" validatorMessage="Описание не должно превышать 100 знаков" >
+                                            <f:validateLength maximum="100" />
+                                            <p:ajax update="msg" event="keyup" />
+                                        </p:inputTextarea>
+                                        <p:message for="about" id="msg" style="color:red; background-color: white"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column style="background: white; color: black; border: 1px solid black" headerText="Дата начала">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{camp.startDate.toLocaleString()}" /></f:facet>
+                                    <f:facet name="input"><p:calendar navigator="true" value="#{camp.startDate}" /></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column style="background: white; color: black; border: 1px solid black" headerText="Дата окончания">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{camp.endDate.toLocaleString()}" /></f:facet>
+                                    <f:facet name="input"><p:calendar navigator="true" value="#{camp.endDate}" /></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column style="background: white; color: black; border: 1px solid black; width:42px;text-align: center" >
+                                <p:commandButton action="#{CampReqBean.delete()}" icon="ui-icon-trash" title="View" style="border-radius: 10px;border-width: 0px; background: #ff6600; width: 90%; height: auto;">
+                                    <f:setPropertyActionListener value="#{camp}" target="#{CampReqBean.selectedCampaign}" />
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>   
+                    </h:form>
+                </div>
+                <div class="table"><h2>Реклама</h2> 
+                    <div class="tableButtons">
+                        <h:form>
+                            <h:commandButton action="#{facesContext.externalContext.redirect('./managerAddAdvertising.xhtml')}" class="button" style="width:12%;margin: 10px;" value="Добавить" />
+                        </h:form>
+                    </div>
+                    <h:form id="form2">
+                        <p:dataTable  id="del" value="#{AdvReqBean.advertisings}" var="adv" rowStyleClass="advtableoddrow" style="border: 2px solid #32356E; border-bottom-width: 3px; width: 93%;" styleClass="advtable" rowKey="#{adv.name}"  editable="true" editMode="cell">
+                            <p:ajax event="cellEdit" listener="#{AdvReqBean.onCellEdit}"/>
+                            <p:column style="background: white; color: black; border: 1px solid black" headerText="Название">
+                                #{adv.name}
+                            </p:column>
+                            <p:column style="background: white; color: black; border: 1px solid black" headerText="Категория">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{adv.category}" /></f:facet>
+                                    <f:facet name="input"> 
+                                        <p:inputText id="category" value="#{adv.category}" validatorMessage="Категория не должна превышать 20 знаков" >
+                                            <f:validateLength maximum="20" />
+                                            <p:ajax update="msg2" event="keyup" />
+                                        </p:inputText>
+                                        <p:message for="category" id="msg2" style="color:red; background-color: white"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column style="background: white; color: black; border: 1px solid black" headerText="Цена">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{adv.price}" /></f:facet>
+                                    <f:facet name="input"> <h:inputText value="#{adv.price}" /></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column style="background: white; color: black; border: 1px solid black" headerText="Краткое описание">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{adv.briefDescription}" /></f:facet>
+                                    <f:facet name="input"> 
+                                        <p:inputTextarea id="briefDescription" value="#{adv.briefDescription}" validatorMessage="Краткое описание не должно превышать 40 знаков" >
+                                            <f:validateLength maximum="40" />
+                                            <p:ajax update="msg3" event="keyup" />
+                                        </p:inputTextarea>
+                                        <p:message for="briefDescription" id="msg3" style="color:red; background-color: white"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column style="background: white; color: black; border: 1px solid black" headerText="Полное описание">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{adv.fullDescription}" /></f:facet>
+                                    <f:facet name="input"> 
+                                        <p:inputTextarea id="fullDescription" value="#{adv.fullDescription}" validatorMessage="Полное описание не должно превышать 100 знаков" >
+                                            <f:validateLength maximum="100" />
+                                            <p:ajax update="msg4" event="keyup" />
+                                        </p:inputTextarea>
+                                        <p:message for="fullDescription" id="msg4" style="color:red; background-color: white"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column style="background: white; color: black; border: 1px solid black" headerText="Название акции">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{adv.campaignName}" /></f:facet>
+                                    <f:facet name="input"> 
+                                        <h:selectOneMenu value="#{adv.campaignName}" style="width:80%;">
+                                            <f:selectItems value="#{AdvReqBean.campaignNames}" var="campaignName" itemLabel="#{campaignName}" itemValue="#{campaignName}"/>
+                                        </h:selectOneMenu>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column style="background: white; color: black; border: 1px solid black; width:42px;text-align: center" >
+                                <p:commandButton action="#{AdvReqBean.delete()}" icon="ui-icon-trash" title="View" style="border-radius: 10px;border-width: 0px; background: #ff6600; width: 90%; height: auto;">
+                                    <f:setPropertyActionListener value="#{adv}" target="#{AdvReqBean.selectedAdvertising}" />
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>                          
+                    </h:form>
+                </div>
+            </div>
+        </h:body>
+    </f:view>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/AdvertisingAgency">
+    <Resource name="jdbc/aa" 
+              auth="Container" type="javax.sql.DataSource" 
+              maxActive="8" maxIdle="30" maxWait="10000" 
+              username="root" password="root" 
+              driverClassName="com.mysql.jdbc.Driver" 
+              url="jdbc:mysql://localhost/advertisingagency?useSSL=false"> 
+    </Resource>
+    <Realm className="org.apache.catalina.realm.DataSourceRealm"
+           dataSourceName="jdbc/aa"  
+           localDataSource="true"
+           userTable="user"
+           userNameCol="login"
+           userCredCol="password" 
+           userRoleTable="user"
+           roleNameCol="role"/>  
+</Context>
